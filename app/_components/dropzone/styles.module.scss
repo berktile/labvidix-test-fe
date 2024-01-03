@@ -1,0 +1,287 @@
+@import '../../../variables.scss';
+
+.wrapper {
+
+    grid-column: 1 / -1;
+    width:100%;
+    height:auto;
+    display: flex;
+    flex-direction: column;
+    gap:48px;
+    justify-content: flex-start;
+    align-items: center;
+
+
+
+}
+
+.extractButton {
+    width:auto;
+    height:44px;
+    min-width:218px;
+    border-radius: 12px;
+    outline: none;
+    border: none;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    text-align: center;
+
+    font-family: 'Lato';
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+    &.disabled {
+        background-color: $primary-color-disabled;
+        color: $gray-disabled;
+    }
+
+    &.enabled {
+        background-color: $primary-color;
+        color: #FFF;
+
+
+        &:hover {
+            background-color: $button-hover;
+        }
+
+    }
+
+}
+
+.container {
+
+width:100%;
+max-width:808px;
+height:auto;
+
+margin: 0 auto;
+border-radius: 12px;
+border: 1px solid $stroke;
+background-color: #FFF;
+padding: 32px;
+
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+gap:32px;
+margin-top: 84px;
+.logo {
+    width:auto;
+    height:auto;
+    max-width: 100%;
+    max-height: 100%;
+    
+}
+
+
+.selectButton {
+    border-radius: 12px;
+    outline: none;
+    border: none;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height:44px;
+    text-align: center;
+    font-family: 'Lato';
+    font-size: 20px;
+    font-weight: 500;
+
+
+    &.disabled {
+        background-color: $primary-color-disabled;
+        color: $gray-disabled;
+    }
+
+    &.enabled {
+        background-color: $primary-color;
+        color: #FFF;
+
+
+        &:hover {
+            background-color: $button-hover;
+        }
+
+    }
+
+}
+
+.dropZone {
+
+    .desc {
+        color: $gray;
+        text-align: center;
+
+        font-family: 'Lato';
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+
+        &.visible {
+            display: block;
+        }
+
+        &.hidden {
+            display: none;
+        }
+    }
+
+
+
+
+
+}
+
+
+.fileList {
+    width:100%;
+    max-width:504px;
+    height:auto;
+    max-height:304px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap:16px;
+
+    .maxFile {
+        color: $gray;
+        font-family: 'Lato';
+        font-size: 16px;
+        font-style: italic;
+        font-weight: 600;
+        line-height: normal;
+
+        span {
+            color: $primary-color;
+        }
+
+
+        &.visible {
+            display: block;
+        }
+
+        &.hidden {
+            display: none;
+        }
+
+    }
+    
+    .fileBox {
+        width:100%;
+        height:auto;
+        min-height:40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0px 16px;
+        border-radius: 12px;
+        background-color: $accent;
+        transition:all 0.2s ease-in-out;
+        opacity: 1;
+
+
+        
+        &.isRemoving {
+            opacity: 0;
+            height:0;
+            padding:0;
+            margin:0;
+            transition:all 0.2s ease-in-out;
+
+        }
+
+      
+        
+        .fileName {
+
+            color: $gray;
+            font-family: 'Lato';
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            width:100%;
+            max-width: 186px;
+            height:auto;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+      
+        }
+
+        .remove {
+            border:none;
+            outline: none;
+            padding:0;
+            margin: 0;
+            background-color: transparent;
+            width:24px;
+            height:24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+
+
+        }
+
+        .check{
+            width:24px;
+            height:24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+           
+
+            
+        }
+        
+    }
+
+}
+
+}
+
+
+.extractingStatusWrapper {
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width:100%;
+height:auto;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+gap: 16px;
+
+.spinner {
+    width:96px;
+    height:96px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+p {
+    color: var(--Gray, #3A3A49);
+    text-align: center;
+    font-family: 'Lato';
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+}

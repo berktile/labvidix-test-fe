@@ -1,0 +1,110 @@
+:root {
+    --default-text-color: #3A3A49;
+ 
+
+}
+
+
+
+@font-face {
+    font-family: 'Lato';
+    font-weight: 100;
+    font-style: normal;
+    src: url('../fonts/Lato-Thin.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Lato';
+    font-weight: 300;
+    font-style: normal;
+    src: url('../fonts/Lato-Light.ttf') format('truetype');
+}
+
+
+@font-face {
+    font-family: 'Lato';
+    font-weight: 400;
+    font-style: normal;
+    src: url('../fonts/Lato-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Lato';
+    font-weight: 700;
+    font-style: normal;
+    src: url('../fonts/Lato-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Lato';
+    font-weight: 900;
+    font-style: normal;
+    src: url('../fonts/Lato-Black.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Lato';
+    font-weight: 100;
+    font-style: italic;
+    src: url('../fonts/Lato-ThinItalic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Lato';
+    font-weight: 300;
+    font-style: italic;
+    src: url('../fonts/Lato-LightItalic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Lato';
+    font-weight: 400;
+    font-style: italic;
+    src: url('../fonts/Lato-Italic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Lato';
+    font-weight: 700;
+    font-style: italic;
+    src: url('../fonts/Lato-BoldItalic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Lato';
+    font-weight: 900;
+    font-style: italic;
+    src: url('../fonts/Lato-BlackItalic.ttf') format('truetype');
+}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    
+}
+
+body {
+    background-color: rgba(253, 253, 253, 1);
+    font-family: 'Lato';
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--default-text-color);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+
+ul {
+    list-style: none;
+}
+
