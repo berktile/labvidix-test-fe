@@ -6,7 +6,7 @@ import React from "react";
 
 const queryClient = new QueryClient();
 
-export default function AuthLayout({
+export default function HistoryLayout({
   children,
 }: {
   children: React.ReactNode;

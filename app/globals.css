@@ -1,3 +1,4 @@
+
 :root {
     --default-text-color: #3A3A49;
  
@@ -91,8 +92,37 @@ body {
     color: var(--default-text-color);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
+    overflow-y:scroll;
+
+    
+
+
+     
 }
+
+
+::-webkit-scrollbar {
+    width: 10px;
+  
+  }
+  
+
+  ::-webkit-scrollbar-track {
+   background: transparent;
+    border-radius: 10px;
+    margin-top:40px;
+  }
+   
+ 
+  ::-webkit-scrollbar-thumb {
+    border-radius: 32px;
+    background: var(--Accent-2, #CFD4F0);
+  }
+  
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--Accent-2, #767c9c);
+  }
 
 a {
     text-decoration: none;
@@ -107,4 +137,5 @@ button {
 ul {
     list-style: none;
 }
+
 

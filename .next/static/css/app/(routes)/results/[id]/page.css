@@ -1,0 +1,214 @@
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[11].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[11].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[11].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[11].oneOf[9].use[5]!./app/_components/result-view/styles.module.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.styles_resultsHeader__yVe6X {
+  width: 100%;
+  height: 49px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 10px;
+  align-items: center;
+  border-bottom: 4px solid var(--Accent-2, #CFD4F0);
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: white;
+}
+.styles_resultsHeader__yVe6X .styles_headerItem__TZ8Uw {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--Gray, #3A3A49);
+  text-align: center;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  font-size: clamp(18px, 2vw, 24px);
+}
+
+.styles_resultsViewsContainer__hAbYA {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  grid-column: 1/span 12;
+}
+
+.styles_container__A7qe4 {
+  width: 100%;
+  height: auto;
+  display: grid;
+  min-height: 984px;
+  flex-direction: row;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 24px;
+  column-gap: 24px;
+  border-bottom: 1px var(--Accent-2, #CFD4F0) solid;
+  padding: 24px 25px 41px 25px;
+  background: var(--Accent, #F2F6FC);
+}
+
+.styles_left__lgdk6 {
+  width: 100%;
+  height: auto;
+  display: flex;
+  background-color: rgb(255, 255, 255);
+  padding-left: 22px;
+  padding-right: 21px;
+  padding-top: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.styles_left__lgdk6 .styles_docPreview__vGx_v {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.styles_right__AZQCs {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 32px;
+}
+.styles_right__AZQCs .styles_header__wiHMs {
+  width: 100%;
+  height: 32px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.styles_right__AZQCs .styles_header__wiHMs .styles_fileNameWrapper__5LNj7 {
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.styles_right__AZQCs .styles_header__wiHMs .styles_fileNameWrapper__5LNj7 .styles_icon__XzZ9c {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.styles_right__AZQCs .styles_header__wiHMs .styles_fileNameWrapper__5LNj7 .styles_fileName__4Q_mb {
+  color: var(--Gray, #3A3A49);
+  font-family: "Lato";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background: none;
+}
+.styles_right__AZQCs .styles_header__wiHMs .styles_editResultsWrapper__l10A1 {
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+}
+.styles_right__AZQCs .styles_header__wiHMs .styles_editResultsWrapper__l10A1 .styles_icon__XzZ9c {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.styles_right__AZQCs .styles_header__wiHMs .styles_editResultsWrapper__l10A1 .styles_editResults__UBnGn {
+  color: var(--Gray, #3A3A49);
+  font-family: "Lato";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background: none;
+}
+.styles_right__AZQCs .styles_header__wiHMs .styles_editResultsWrapper__l10A1:hover .styles_editResults__UBnGn {
+  color: var(--Primary-color, #3858FF);
+}
+.styles_right__AZQCs .styles_header__wiHMs .styles_editResultsWrapper__l10A1:hover .styles_icon__XzZ9c svg path {
+  fill: var(--Primary-color, #3858FF);
+}
+.styles_right__AZQCs .styles_results__OMCPC {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 24px;
+}
+.styles_right__AZQCs .styles_results__OMCPC .styles_result__xxX7k {
+  width: 100%;
+  height: 72px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 24px;
+  font-family: "Lato";
+  font-size: 20px;
+  font-style: normal;
+  line-height: normal;
+  text-align: left;
+}
+.styles_right__AZQCs .styles_results__OMCPC .styles_result__xxX7k .styles_title__6RYAI {
+  font-weight: 600;
+  color: var(--Primary-color, #3858FF);
+}
+.styles_right__AZQCs .styles_results__OMCPC .styles_result__xxX7k .styles_content__89cxH {
+  font-weight: 500;
+  color: var(--Gray, #3A3A49);
+}
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[11].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[11].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[11].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[11].oneOf[9].use[5]!./app/_layouts/results.module.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.results_container__nQm5I {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  max-width: 1440px;
+  background: #fff;
+  grid-template-columns: repeat(12, 80px);
+  grid-column-gap: 24px;
+  column-gap: 24px;
+  grid-template-rows: auto;
+  padding-top: 140px;
+  margin: 0 auto;
+  padding-left: 108px;
+  padding-right: 108px;
+  box-sizing: border-box;
+  min-height: 100vh;
+}
+@media screen and (max-width: 1440px) {
+  .results_container__nQm5I {
+    padding-left: 0;
+    padding-right: 0;
+    grid-template-columns: repeat(12, 1fr);
+  }
+}

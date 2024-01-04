@@ -1,3 +1,5 @@
+//collapsible-package
+
 import React, { useState, useCallback, useEffect } from "react";
 import styles from "./styles.module.scss";
 import Image from "next/image";
@@ -11,6 +13,8 @@ import moment from "moment";
 import Divider from "../../_assets/history/divider.svg";
 import { useUpdatePackageNameMutation } from "@/app/(routes)/history/api/useUpdatePackageNameMutation";
 import ClipLoader from "react-spinners/ClipLoader";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export interface ExtractedData {
   Text: string;
@@ -148,6 +152,11 @@ const CollapseHeader = ({
     handleUpdate();
   };
 
+
+  const router = useRouter();
+
+
+
   const dateFormatted = moment(date).format("DD/MM/YYYY");
   const getHoursAndMinutes = moment(date).format("HH:mm A");
 
@@ -187,9 +196,9 @@ const CollapseHeader = ({
       <button className={styles.downloadButton} onClick={onDownload}>
         Download all
       </button>
-      <p className={styles.viewAll} onClick={onViewAll}>
+      <Link className={styles.viewAll} href={`/results/${id}`}>
         View all
-      </p>
+      </Link>
       <button
         className={`
           ${styles.caret} 
@@ -203,9 +212,9 @@ const CollapseHeader = ({
   );
 };
 
-export default function CollapsiblePackage({
-  packages,
-}: CollapsiblePackageProps) {
+
+const CollapsiblePackage: React.FC<CollapsiblePackageProps> = ({ packages }) => {
+
   const [collapsedStates, setCollapsedStates] = useState(
     packages.map(() => false)
   );
@@ -248,3 +257,5 @@ export default function CollapsiblePackage({
     </section>
   );
 }
+
+export default CollapsiblePackage;

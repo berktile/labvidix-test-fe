@@ -1,0 +1,228 @@
+.resultsHeader{
+
+    width:100%;
+    height:49px;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 10px;
+    align-items: center;
+    border-bottom: 4px solid var(--Accent-2, #CFD4F0);
+    position: sticky;
+    top: 0;
+    background-color: white;
+
+    .headerItem {
+
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--Gray, #3A3A49);
+        text-align: center;
+        font-family: 'Lato';
+        
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        font-size: clamp(18px, 2vw, 24px);
+ 
+
+    }
+
+
+
+}
+
+
+.resultsViewsContainer{
+    width:100%;
+
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    
+
+    
+    
+    grid-column: 1 / span 12;
+   
+}
+
+
+.container {
+
+    width:100%;
+    height:auto;
+    display:grid;
+    min-height: 984px;
+    flex-direction:row;
+    
+    grid-template-columns: 1fr 1fr;
+    column-gap: 24px;    
+    border-bottom: 1px var(--Accent-2, #CFD4F0) solid;
+    padding: 24px 25px 41px 25px;
+    background: var(--Accent, #F2F6FC);
+   
+}
+
+@mixin button-style {
+    color: var(--Gray, #3A3A49);
+    font-family: 'Lato';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background: none;
+  }
+  
+  @mixin icon-style {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+  
+  }
+
+
+.left {
+    width:100%;
+    height:auto;
+    display:flex;
+    background-color: rgb(255, 255, 255);
+    padding-left:22px;
+    padding-right:21px;
+    padding-top: 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+
+
+    .docPreview {
+        width:100%;
+        height: 100%;
+        display:flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+   
+
+    }
+
+}
+
+
+.right {
+    width:100%;
+    height:auto;
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap:32px;
+
+    .header {
+        width: 100%;
+        height: 32px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      
+        .fileNameWrapper {
+          width: auto;
+          height: auto;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: flex-start;
+          gap: 10px;
+      
+          .icon {
+            @include icon-style;
+          }
+      
+          .fileName {
+            @include button-style;
+          }
+        }
+      
+        .editResultsWrapper {
+          width: auto;
+          height: auto;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: flex-start;
+          gap: 8px;
+      
+          .icon {
+            @include icon-style;
+          }
+      
+          .editResults {
+            @include button-style;
+          }
+      
+          &:hover {
+            .editResults {
+              color: var(--Primary-color, #3858FF);
+            }
+      
+            .icon svg path {
+              fill: var(--Primary-color, #3858FF);
+            }
+          }
+        }
+      }
+
+      .results {
+
+        width:100%;
+        height:auto;
+        display:flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap:24px;
+
+        .result {
+            width: 100%;
+            height:72px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 24px;
+            font-family: 'Lato';
+            font-size: 20px;
+            font-style: normal;
+            
+            line-height: normal;
+            text-align: left;
+
+            .title {
+                font-weight: 600;
+                color: var(--Primary-color, #3858FF);
+            }
+
+            .content {
+                font-weight: 500;
+                color: var(--Gray, #3A3A49);
+            }
+
+        }
+
+
+      }
+
+}
