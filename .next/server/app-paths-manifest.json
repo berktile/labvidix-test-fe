@@ -1,5 +1,6 @@
 {
-  "/(routes)/results/[id]/page": "app/(routes)/results/[id]/page.js",
   "/page": "app/page.js",
-  "/(routes)/history/page": "app/(routes)/history/page.js"
+  "/(routes)/results/[id]/page": "app/(routes)/results/[id]/page.js",
+  "/(routes)/history/page": "app/(routes)/history/page.js",
+  "/(routes)/(auth)/login/page": "app/(routes)/(auth)/login/page.js"
 }

@@ -39,6 +39,7 @@ export interface RawDocument {
 
 export interface PackageData {
   _id: string;
+  createdAt: string;
   packageName: string;
   rawDocuments: RawDocument[];
 }
@@ -125,13 +126,13 @@ const CollapseHeader = ({
     }
   }, [isSuccess, isError, error]);
 
-  const handleUpdate = async () => {
+  const handleUpdate = useCallback(async () => {
     setIsLoading(true);
     await mutateAsync({
       id: id,
       packageName: editedPackageName,
     });
-  };
+  }, [editedPackageName]);
 
   const handleEdit = () => {
     onEdit();
@@ -152,18 +153,13 @@ const CollapseHeader = ({
     handleUpdate();
   };
 
-
-  const router = useRouter();
-
-
-
-  const dateFormatted = moment(date).format("DD/MM/YYYY");
-  const getHoursAndMinutes = moment(date).format("HH:mm A");
+  const formattedDate = moment(date, "DD/MM/YYYY HH:mm").format(
+    "DD/MM/YYYY HH:mm"
+  );
 
   return (
     <div className={styles.collapseHeader}>
       <div className={styles.packageName}>
-        
         {isEditing ? (
           <input
             type="text"
@@ -181,17 +177,16 @@ const CollapseHeader = ({
             </div>
           </>
         )}
-        {
-          isLoading && 
-           <div className = {styles.icon}>
-          <ClipLoader color="#3A3A49" size={24} />
-       </div>
-        }
+        {isLoading && (
+          <div className={styles.icon}>
+            <ClipLoader color="#3A3A49" size={24} />
+          </div>
+        )}
       </div>
       <div className={styles.dateWrapper}>
-        <p>{dateFormatted}</p>
+        <p>{formattedDate.split(" ")[0]}</p>
         <Image src={Divider} alt="divider" width={0} height={0} />
-        <p>{getHoursAndMinutes}</p>
+        <p>{formattedDate.split(" ")[1]}</p>
       </div>
       <button className={styles.downloadButton} onClick={onDownload}>
         Download all
@@ -212,18 +207,26 @@ const CollapseHeader = ({
   );
 };
 
-
-const CollapsiblePackage: React.FC<CollapsiblePackageProps> = ({ packages }) => {
+const CollapsiblePackage: React.FC<CollapsiblePackageProps> = ({
+  packages,
+}) => {
+  const sortedPackages = packages?.sort((a, b) =>
+    moment(a.createdAt, "DD/MM/YYYY HH:mm").isBefore(
+      moment(b.createdAt, "DD/MM/YYYY HH:mm")
+    )
+      ? 1
+      : -1
+  );
 
   const [collapsedStates, setCollapsedStates] = useState(
-    packages.map(() => false)
+    sortedPackages.map(() => false)
   );
 
   const getIdIndex = useCallback(
     (_id: string) => {
-      return packages.findIndex((packageData) => packageData._id === _id);
+      return sortedPackages.findIndex((packageData) => packageData._id === _id);
     },
-    [packages]
+    [sortedPackages]
   );
 
   const handleCollapse = (_id: string) => {
@@ -237,12 +240,12 @@ const CollapsiblePackage: React.FC<CollapsiblePackageProps> = ({ packages }) => 
 
   return (
     <section className={styles.container}>
-      {packages.map((packageData) => (
+      {sortedPackages?.map((packageData) => (
         <React.Fragment key={packageData._id}>
           <CollapseHeader
             packageName={packageData.packageName}
             id={packageData._id}
-            date="2024-01-01T15:01:03.289+00:00"
+            date={packageData.createdAt}
             onDownload={() => {}}
             onViewAll={() => {}}
             onEdit={() => {}}
@@ -256,6 +259,6 @@ const CollapsiblePackage: React.FC<CollapsiblePackageProps> = ({ packages }) => 
       ))}
     </section>
   );
-}
+};
 
 export default CollapsiblePackage;
