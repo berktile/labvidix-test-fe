@@ -10,6 +10,7 @@ const fetchPackagesWithResults = async () => {
     if (!response.data) {
         throw new Error("Error fetching packages");
     }
+
     return response.data as PackageData[];
 }
 

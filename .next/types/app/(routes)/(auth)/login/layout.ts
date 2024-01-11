@@ -1,4 +1,4 @@
-// File: C:\Users\Taha\Desktop\labvidix-frontend\app\(routes)\(auth)\login\layout.tsx
+// File: C:\Users\Taha\Desktop\test-frontend\app\(routes)\(auth)\login\layout.tsx
 import * as entry from '../../../../../../app/(routes)/(auth)/login/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

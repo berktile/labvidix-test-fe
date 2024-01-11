@@ -13,6 +13,7 @@ import { useUpdatePackageNameMutation } from "@/app/(routes)/history/api/useUpda
 import ClipLoader from "react-spinners/ClipLoader";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { CSVLink } from "react-csv";
 
 export interface ExtractedData {
   Text: string;
@@ -45,6 +46,26 @@ export interface PackageData {
 export interface CollapsiblePackageProps {
   packages: PackageData[];
 }
+
+const generateCSVData = (rawDocument: RawDocument) => {
+  const csvData = rawDocument.extractedFile.extractedData.map((data) => ({
+    DocumentName: rawDocument.documentName,
+    DocumentURL: rawDocument.documentUrl,
+    Text: data.Text,
+    Type: data.Type,
+    
+  }));
+
+  const headers = [
+    { label: "DocumentName", key: "DocumentName" },
+    { label: "DocumentURL", key: "DocumentURL" },
+    { label: "Text", key: "Text" },
+    { label: "Type", key: "Type" },
+    
+  ];
+
+  return [headers, ...csvData];
+};
 
 const CollapseBody = ({ rawDocuments }: { rawDocuments: RawDocument[] }) => {
   return (
@@ -87,7 +108,7 @@ const CollapseBody = ({ rawDocuments }: { rawDocuments: RawDocument[] }) => {
 interface CollapseHeaderProps {
   packageName: string;
   date: string;
-  onDownload: () => void;
+  rawDocuments: RawDocument[];
   onViewAll: () => void;
   onEdit: () => void;
   isCollapsed: boolean;
@@ -98,7 +119,7 @@ interface CollapseHeaderProps {
 const CollapseHeader = ({
   packageName,
   date,
-  onDownload,
+  rawDocuments,
   onViewAll,
   onEdit,
   isCollapsed,
@@ -111,6 +132,30 @@ const CollapseHeader = ({
   const { mutateAsync, isSuccess, isError, error } =
     useUpdatePackageNameMutation();
   const [isLoading, setIsLoading] = useState(false);
+
+  const handleDownloadAll = () => {
+    rawDocuments.forEach((rawDocument) => {
+      const csvData = generateCSVData(rawDocument);
+      const csvString = csvData
+        .map((row) => Object.values(row).join(","))
+        .join("\n");
+      const csvBlob = new Blob([csvString], { type: "text/csv" });
+      const csvUrl = URL.createObjectURL(csvBlob);
+      const link = document.createElement("a");
+      link.href = csvUrl;
+      link.target = "_blank";
+      link.download = `${rawDocument.documentName}_data.csv`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(csvUrl);
+
+
+    });
+
+    
+
+  };
 
   useEffect(() => {
     if (isSuccess) {
@@ -186,7 +231,7 @@ const CollapseHeader = ({
         <Image src={Divider} alt="divider" width={0} height={0} />
         <p>{formattedDate.split(" ")[1]}</p>
       </div>
-      <button className={styles.downloadButton} onClick={onDownload}>
+      <button className={styles.downloadButton} onClick={handleDownloadAll}>
         Download all
       </button>
       <Link className={styles.viewAll} href={`/results/${id}`}>
@@ -244,7 +289,7 @@ const CollapsiblePackage: React.FC<CollapsiblePackageProps> = ({
             packageName={packageData.packageName}
             id={packageData._id}
             date={packageData.createdAt}
-            onDownload={() => {}}
+            rawDocuments={packageData.rawDocuments}
             onViewAll={() => {}}
             onEdit={() => {}}
             isCollapsed={collapsedStates[getIdIndex(packageData._id)]}

@@ -30,14 +30,9 @@ const uploadFile = async (files: File[]) => {
 
 export const useFileUploadMutation = () => {
   return useMutation({
-    onMutate: async (files: File[]) => {
-      console.log("onMutate:", files);
-    },
+ 
     onError: (error, files, rollback) => {
       console.log("Error:", error);
-    },
-    onSuccess: (data, files) => {
-      console.log("Success:", data);
     },
 
     mutationFn: uploadFile,

@@ -70,6 +70,7 @@ justify-content: center;
 align-items: center;
 gap:32px;
 margin-top: 84px;
+
 .logo {
     width:auto;
     height:auto;
@@ -115,6 +116,7 @@ margin-top: 84px;
 
 .dropZone {
 
+
     .desc {
         color: $gray;
         text-align: center;
@@ -151,7 +153,7 @@ margin-top: 84px;
     justify-content: flex-start;
     align-items: flex-start;
     gap:16px;
-
+    
     .maxFile {
         color: $gray;
         font-family: 'Lato';
