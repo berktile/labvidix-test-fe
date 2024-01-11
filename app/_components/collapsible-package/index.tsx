@@ -1,5 +1,3 @@
-//collapsible-package
-
 import React, { useState, useCallback, useEffect } from "react";
 import styles from "./styles.module.scss";
 import Image from "next/image";
