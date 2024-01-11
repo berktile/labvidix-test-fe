@@ -49,9 +49,9 @@ export default function Login() {
           <Image src={Logo} alt="Logo" />
         </div>
         <div className={styles.header}>
-          <h1>Sign in</h1>
+          <h1>Sign up</h1>
           <p className={styles.subtitle}>
-            Already have an account?{" "}
+            Don't have an account?{" "}
             <span>
               <Link href="/signup">Sign up</Link>
             </span>
