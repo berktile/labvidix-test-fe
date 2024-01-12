@@ -12,16 +12,22 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
+    "/(routes)/history/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(routes)/history/layout.js"
+    ],
     "/(routes)/history/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/(routes)/history/page.css",
       "static/chunks/app/(routes)/history/page.js"
     ],
-    "/(routes)/history/layout": [
+    "/(routes)/results/[id]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(routes)/history/layout.js"
+      "static/css/app/(routes)/results/[id]/page.css",
+      "static/chunks/app/(routes)/results/[id]/page.js"
     ]
   }
 }

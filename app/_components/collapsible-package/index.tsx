@@ -14,6 +14,10 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { CSVLink } from "react-csv";
+import { saveAs } from "file-saver";
+import JSZip from "jszip";
+import ExcelJS from "exceljs";
+import FileSaver from "file-saver";
 
 export interface ExtractedData {
   Text: string;
@@ -47,24 +51,13 @@ export interface CollapsiblePackageProps {
   packages: PackageData[];
 }
 
-const generateCSVData = (rawDocument: RawDocument) => {
-  const csvData = rawDocument.extractedFile.extractedData.map((data) => ({
+const generateXLSXData = (rawDocument: RawDocument) => {
+  return rawDocument.extractedFile.extractedData.map((data) => ({
     DocumentName: rawDocument.documentName,
     DocumentURL: rawDocument.documentUrl,
     Text: data.Text,
     Type: data.Type,
-    
   }));
-
-  const headers = [
-    { label: "DocumentName", key: "DocumentName" },
-    { label: "DocumentURL", key: "DocumentURL" },
-    { label: "Text", key: "Text" },
-    { label: "Type", key: "Type" },
-    
-  ];
-
-  return [headers, ...csvData];
 };
 
 const CollapseBody = ({ rawDocuments }: { rawDocuments: RawDocument[] }) => {
@@ -133,28 +126,35 @@ const CollapseHeader = ({
     useUpdatePackageNameMutation();
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleDownloadAll = () => {
-    rawDocuments.forEach((rawDocument) => {
-      const csvData = generateCSVData(rawDocument);
-      const csvString = csvData
-        .map((row) => Object.values(row).join(","))
-        .join("\n");
-      const csvBlob = new Blob([csvString], { type: "text/csv" });
-      const csvUrl = URL.createObjectURL(csvBlob);
-      const link = document.createElement("a");
-      link.href = csvUrl;
-      link.target = "_blank";
-      link.download = `${rawDocument.documentName}_data.csv`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(csvUrl);
+  const handleDownloadAll = async () => {
+    const zip = new JSZip();
 
+    for (let i = 0; i < rawDocuments.length; i++) {
+      const rawDocument = rawDocuments[i];
+      const xlsxData = generateXLSXData(rawDocument);
 
+      const workbook = new ExcelJS.Workbook();
+      const worksheet = workbook.addWorksheet("Sheet 1");
+
+      worksheet.columns = [
+        { header: "DocumentName", key: "DocumentName", width: 20 },
+        { header: "DocumentURL", key: "DocumentURL", width: 20 },
+        { header: "Text", key: "Text", width: 20 },
+        { header: "Type", key: "Type", width: 20 },
+      ];
+
+      xlsxData.forEach((data) => {
+        worksheet.addRow(data);
+      });
+
+      const buffer = await workbook.xlsx.writeBuffer();
+
+      zip.file(`${rawDocument.documentName}_data.xlsx`, buffer);
+    }
+
+    zip.generateAsync({ type: "blob" }).then((content) => {
+      saveAs(content, `${packageName}.zip`);
     });
-
-    
-
   };
 
   useEffect(() => {
