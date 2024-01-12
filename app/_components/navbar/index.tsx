@@ -8,7 +8,7 @@ import User from "../../_assets/homepage/User.svg";
 import Dropdown from "../dropdown";
 import Logout from "../../_assets/homepage/signout.svg";
 import useProfile from "@/app/_hooks/useUser";
-import useRouter from "next/navigation";
+import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 
 const items = [
@@ -35,7 +35,7 @@ const menuItems = [
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
-
+  const router = useRouter();
   const closeDropdown = () => {
     setIsMenuOpen(false);
   };
@@ -60,9 +60,9 @@ export default function Navbar() {
     <nav className={styles.container}>
       <div className={styles.navbar}>
         <div className={styles.leftSection}>
-          <div className={styles.logo}>
+          <Link className={styles.logo} href="/">
             <Image src={Logo} alt="Logo" width={0} height={0} />
-          </div>
+          </Link>
           <ul className={styles.menu}>
             {menuItems.map((item) => (
               <li

@@ -29,7 +29,78 @@
   font-size: clamp(18px, 2vw, 24px);
 }
 
-.styles_resultsViewsContainer__hAbYA {
+.styles_wrapper__GXiUV {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 72px;
+  grid-column: 1/span 12;
+}
+.styles_wrapper__GXiUV .styles_upperSection__4X_P_ {
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 24px;
+}
+.styles_wrapper__GXiUV .styles_upperSection__4X_P_ .styles_backButton__QGQhH {
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: none;
+  background: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.styles_wrapper__GXiUV .styles_upperSection__4X_P_ .styles_packageNameContainer__SMo61 {
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.styles_wrapper__GXiUV .styles_upperSection__4X_P_ .styles_packageNameContainer__SMo61 input[type=text] {
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--Gray, #3A3A49);
+  font-family: "Lato";
+  font-size: clamp(16px, 2vw, 20px);
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.styles_wrapper__GXiUV .styles_upperSection__4X_P_ .styles_packageNameContainer__SMo61 .styles_icon__XzZ9c {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.styles_wrapper__GXiUV .styles_upperSection__4X_P_ .styles_packageNameContainer__SMo61 .styles_icon__XzZ9c:hover svg path {
+  fill: var(--Primary-color, #3858FF);
+}
+.styles_wrapper__GXiUV .styles_upperSection__4X_P_ .styles_packageNameContainer__SMo61 .styles_packageName__M0KCT {
+  color: var(--Gray, #3A3A49);
+  font-family: "Lato";
+  font-size: clamp(16px, 2vw, 20px);
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.styles_wrapper__GXiUV .styles_resultsViewsContainer__hAbYA {
   width: 100%;
   height: 100%;
   display: flex;
@@ -198,7 +269,7 @@
   grid-column-gap: 24px;
   column-gap: 24px;
   grid-template-rows: auto;
-  padding-top: 140px;
+  padding-top: 52px;
   margin: 0 auto;
   padding-left: 108px;
   padding-right: 108px;

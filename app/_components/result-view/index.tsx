@@ -1,16 +1,18 @@
-'use client';
-import React from "react";
+"use client";
+import React, { useCallback, useEffect, useState } from "react";
 import styles from "./styles.module.scss";
 import Image from "next/image";
 import FileIcon from "../../_assets/history/file.svg";
 import { SinglePackageData } from "@/app/(routes)/results/[id]/page";
 import { SinglePackageRawDocument } from "@/app/(routes)/results/[id]/page";
+import BackIcon from "../../_assets/results/back.svg";
+import { useUpdatePackageNameMutation } from "@/app/(routes)/history/api/useUpdatePackageNameMutation";
+import { useRouter } from "next/navigation";
+import { PackageData } from "../collapsible-package";
+import ClipLoader from "react-spinners/ClipLoader";
 
 
-const EditIcon = ({
-    ...props
-    }: React.SVGProps<SVGSVGElement>
-    ) => (
+const EditIcon = ({ ...props }: React.SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={24}
@@ -27,73 +29,157 @@ const EditIcon = ({
   </svg>
 );
 
-
-
-
-
 const ResultView: React.FC<{ rawDocument: SinglePackageRawDocument }> = ({
-    rawDocument,
-  }) => (
+  rawDocument
+}) => {
+
+  
+
+  return (
     <section className={styles.container}>
-      <div className={styles.left}>
-        <div className={styles.docPreview}>
-          <Image
-            src={rawDocument.documentUrl}
-            alt="image"
-            width={0}
-            height={0}
-            layout="responsive"
-            priority
+    <div className={styles.left}>
+      <div className={styles.docPreview}>
+        <Image
+          src={rawDocument.documentUrl}
+          alt="image"
+          width={0}
+          height={0}
+          layout="responsive"
+          priority
+        />
+      </div>
+    </div>
+    <div className={styles.right}>
+      <div className={styles.header}>
+        <div className={styles.fileNameWrapper}>
+          <div className={styles.icon}>
+            <Image src={FileIcon} alt="file" width={0} height={0} />
+          </div>
+          <span className={styles.fileName}>{rawDocument.documentName}</span>
+        </div>
+        <div className={styles.editResultsWrapper}>
+          <div className={styles.icon}>
+            <EditIcon />
+          </div>
+          <button className={styles.editResults}>Edit results</button>
+        </div>
+      </div>
+
+      <ul className={styles.results}>
+        {rawDocument.extractedFile.extractedData.map((item, index) => (
+          <li key={index} className={styles.result}>
+            <span className={styles.title}>{item.Type}</span>
+            <span className={styles.content}>{item.Text}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+  )
+
+};
+
+const ResultsViewList: React.FC<{ packageData: SinglePackageData }> = ({
+  packageData,
+}) => {
+  const router = useRouter();
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedPackageName, setEditedPackageName] =
+    useState<PackageData["packageName"]>(packageData.packageName);
+  const { mutateAsync, isSuccess, isError, error } =
+    useUpdatePackageNameMutation();
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (isSuccess) {
+      setIsEditing(false);
+      setIsLoading(false);
+    }
+
+    if (isError) {
+      console.log(error);
+      setIsLoading(false);
+    }
+  }, [isSuccess, isError, error]);
+
+  const handleUpdate = useCallback(async () => {
+    setIsLoading(true);
+    await mutateAsync({
+      id: packageData._id,
+      packageName: editedPackageName,
+    });
+  }, [editedPackageName]);
+
+  const handleEdit = () => {
+    setIsEditing(true);
+    
+  };
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEditedPackageName(event.target.value);
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      handleUpdate();
+    }
+  };
+
+  const handleBlur = () => {
+    handleUpdate();
+  };
+
+  return (
+    <div className={styles.wrapper}>
+      <div className={styles.upperSection}>
+        <button
+          className={styles.backButton}
+          onClick={() => {
+            router.back();
+          }}
+        >
+          <Image src={BackIcon} alt="back" width={0} height={0} />
+        </button>
+
+        <div className={styles.packageNameContainer}>
+     
+        {isEditing ? (
+          <input
+            type="text"
+            value={editedPackageName}
+            onChange={handleInputChange}
+            onBlur={handleBlur}
+            onKeyDown={handleKeyDown}
+            autoFocus
           />
-        </div>
-      </div>
-      <div className={styles.right}>
-        <div className={styles.header}>
-          <div className={styles.fileNameWrapper}>
-            <div className={styles.icon}>
-              <Image src={FileIcon} alt="file" width={0} height={0} />
+        ) : (
+          <>
+            <h1 className={styles.packageName}>{editedPackageName}</h1>
+            <div className={styles.icon} onClick={handleEdit}>
+               <EditIcon />
             </div>
-            <span className={styles.fileName}>{rawDocument.documentName}</span>
+          </>
+        )}
+        {isLoading && (
+          <div className={styles.icon}>
+            <ClipLoader color="#3A3A49" size={24} />
           </div>
-          <div className={styles.editResultsWrapper}>
-            <div className={styles.icon}>
-              <EditIcon />
-            </div>
-            <button className={styles.editResults}>Edit results</button>
-          </div>
-        </div>
-  
-        <ul className={styles.results}>
-          {rawDocument.extractedFile.extractedData.map((item, index) => (
-            <li key={index} className={styles.result}>
-              <span className={styles.title}>{item.Type}</span>
-              <span className={styles.content}>{item.Text}</span>
-            </li>
-          ))}
-        </ul>
+        )}
       </div>
-    </section>
-  );
-  
-  const ResultsViewList: React.FC<{ packageData: SinglePackageData }> = ({
-    packageData,
-  }) => {
-    return (
+      </div>
+
       <section className={styles.resultsViewsContainer}>
-        <div className = {styles.resultsHeader}>
-            <span className = {styles.headerItem}>
-                Uploaded file
-            </span>
-            <span className = {styles.headerItem}>
-                Text extraction result
-            </span>
+        <div className={styles.resultsHeader}>
+          <span className={styles.headerItem}>Uploaded file</span>
+          <span className={styles.headerItem}>Text extraction result</span>
         </div>
 
         {packageData.rawDocument.map((rawDocument, index) => (
           <ResultView key={index} rawDocument={rawDocument} />
         ))}
       </section>
-    );
-  };
-  
-  export default ResultsViewList;
+    </div>
+  );
+};
+
+export default ResultsViewList;

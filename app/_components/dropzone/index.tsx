@@ -4,12 +4,10 @@ import {
   useDropzone,
   DropzoneRootProps,
   DropzoneInputProps,
-  Accept,
 } from "react-dropzone";
 import styles from "./styles.module.scss";
 import Image from "next/image";
 import DropLogo from "../../_assets/homepage/converter1.png";
-import Check from "../../_assets/homepage/check.svg";
 import Remove from "../../_assets/homepage/remove.svg";
 import { useFileUploadMutation } from "./api/useFileUploadMutation";
 import Loading from "../custom-spinner/Loading";
@@ -113,9 +111,7 @@ const Dropzone: React.FC = () => {
             }}
           >
             <p className={styles.fileName}>{file.name}</p>
-            <span className={styles.check}>
-              <Image src={Check} alt="Check" width={0} height={0} />
-            </span>
+           
             <button className={styles.remove}  onClick={(event) => removeFile(index, event)}>
               <Image src={Remove} alt="Remove" width={0} height={0} />
             </button>
