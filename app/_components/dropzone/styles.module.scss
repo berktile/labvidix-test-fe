@@ -37,6 +37,7 @@
     &.disabled {
         background-color: $primary-color-disabled;
         color: $gray-disabled;
+        cursor: not-allowed;
     }
 
     &.enabled {
@@ -226,11 +227,22 @@ margin-top: 84px;
             padding:0;
             margin: 0;
             background-color: transparent;
-            width:24px;
-            height:24px;
+            width:32px;
+            height:32px;
             display: flex;
             justify-content: center;
             align-items: center;
+            border-radius: 50%;
+            transition:all 0.2s ease-in-out;
+
+            &:hover {
+                cursor: pointer;
+                background: #E4EBF4;
+                transition: all 0.2s ease-in-out;
+
+                
+
+            }
             
 
 
