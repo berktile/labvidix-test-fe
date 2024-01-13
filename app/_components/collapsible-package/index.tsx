@@ -16,7 +16,7 @@ import Link from "next/link";
 import { saveAs } from "file-saver";
 import JSZip from "jszip";
 import ExcelJS from "exceljs";
-import FileSaver from "file-saver";
+import Modal from "../modal";
 
 export interface ExtractedData {
   Text: string;
@@ -49,17 +49,59 @@ export interface PackageData {
 export interface CollapsiblePackageProps {
   packages: PackageData[];
 }
-
 const generateXLSXData = (rawDocument: RawDocument) => {
+  console.log("current raw document", rawDocument.documentName)
   return rawDocument.extractedFile.extractedData.map((data) => ({
     DocumentName: rawDocument.documentName,
     DocumentURL: rawDocument.documentUrl,
     Text: data.Text,
     Type: data.Type,
-  }));
-};
 
+  }));
+
+
+};
 const CollapseBody = ({ rawDocuments }: { rawDocuments: RawDocument[] }) => {
+  const [previewImage, setPreviewImage] = useState<string>("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleDownloadSingle = async (rawDocument: RawDocument) => {
+    const xlsxData = generateXLSXData(rawDocument);
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet("Sheet 1");
+  
+    worksheet.columns = [
+      { header: "DocumentName", key: "DocumentName", width: 20 },
+      { header: "DocumentURL", key: "DocumentURL", width: 20 },
+      { header: "Text", key: "Text", width: 20 },
+      { header: "Type", key: "Type", width: 20 },
+      { header: "Score", key: "Score", width: 20}
+    ];
+  
+    xlsxData.forEach((data) => {
+      worksheet.addRow(data);
+    });
+  
+    const buffer = await workbook.xlsx.writeBuffer();
+  
+    saveAs(new Blob([buffer]), `${rawDocument.documentName}_data.xlsx`);
+  };
+
+   
+  const handleImagePreview = (url: string, event: React.MouseEvent) => {
+    event.stopPropagation();
+    setPreviewImage(url);
+    setIsModalOpen(true);
+  };
+  
+
+  const closeImagePreview = () => {
+    setPreviewImage("");
+    setIsModalOpen(false);
+  };
+
+
+
   return (
     <motion.ul
       className={styles.collapseBodyWrapper}
@@ -84,15 +126,17 @@ const CollapseBody = ({ rawDocuments }: { rawDocuments: RawDocument[] }) => {
             <p>{rawDocument.documentName}</p>
           </div>
           <div className={styles.rightSection}>
-            <div className={styles.icon}>
+            <div className={styles.icon} onClick={() => handleDownloadSingle(rawDocument)}>
               <Image src={DownloadIcon} alt="edit" width={0} height={0} />
             </div>
-            <div className={styles.icon}>
-              <Image src={Arrow} alt="arrow" width={0} height={0} />
+            <div className={styles.icon}  onClick={(e) => handleImagePreview(rawDocument.documentUrl, e)}>
+              <Image src={Arrow} alt="arrow" width={0} height={0}
+              />
             </div>
           </div>
         </motion.li>
       ))}
+      <Modal isOpen={isModalOpen} onClose={closeImagePreview} imgUrl={previewImage}/>
     </motion.ul>
   );
 };
@@ -186,13 +230,27 @@ const CollapseHeader = ({
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+
     if (event.key === "Enter") {
+      if (checkIfInputChanged())
       handleUpdate();
+    else
+      setIsEditing(false);
+    
     }
   };
 
+  const checkIfInputChanged = () => {
+    return editedPackageName !== packageName;
+  }
+
+
   const handleBlur = () => {
-    handleUpdate();
+    if (checkIfInputChanged())
+      handleUpdate();
+    else
+      setIsEditing(false);
+
   };
 
   const formattedDate = moment(date, "DD/MM/YYYY HH:mm").format(
@@ -259,6 +317,8 @@ const CollapsiblePackage: React.FC<CollapsiblePackageProps> = ({
       ? 1
       : -1
   );
+
+
 
   const [collapsedStates, setCollapsedStates] = useState(
     sortedPackages.map(() => false)
