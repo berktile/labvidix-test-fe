@@ -18,6 +18,7 @@ export interface ExtractedFile {
   extractedData: ExtractedData[];
   extractionDate: string;
   status: string;
+  rating: number;
 }
 
 export interface SinglePackageRawDocument {

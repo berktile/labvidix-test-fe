@@ -10,7 +10,7 @@ import { useUpdatePackageNameMutation } from "@/app/(routes)/history/api/useUpda
 import { useRouter } from "next/navigation";
 import { PackageData } from "../collapsible-package";
 import ClipLoader from "react-spinners/ClipLoader";
-
+import Rating from "../rating";
 
 const EditIcon = ({ ...props }: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -30,53 +30,56 @@ const EditIcon = ({ ...props }: React.SVGProps<SVGSVGElement>) => (
 );
 
 const ResultView: React.FC<{ rawDocument: SinglePackageRawDocument }> = ({
-  rawDocument
+  rawDocument,
 }) => {
-
-  
-
   return (
     <section className={styles.container}>
-    <div className={styles.left}>
-      <div className={styles.docPreview}>
-        <Image
-          src={rawDocument.documentUrl}
-          alt="image"
-          width={0}
-          height={0}
-          layout="responsive"
-          priority
-        />
-      </div>
-    </div>
-    <div className={styles.right}>
-      <div className={styles.header}>
-        <div className={styles.fileNameWrapper}>
-          <div className={styles.icon}>
-            <Image src={FileIcon} alt="file" width={0} height={0} />
-          </div>
-          <span className={styles.fileName}>{rawDocument.documentName}</span>
-        </div>
-        <div className={styles.editResultsWrapper}>
-          <div className={styles.icon}>
-            <EditIcon />
-          </div>
-          <button className={styles.editResults}>Edit results</button>
+      <div className={styles.left}>
+        <div className={styles.docPreview}>
+          <Image
+            src={rawDocument.documentUrl}
+            alt="image"
+            width={0}
+            height={0}
+            layout="responsive"
+            priority
+          />
         </div>
       </div>
+      <div className={styles.right}>
+        <div className={styles.header}>
+          <div className={styles.fileNameWrapper}>
+            <div className={styles.icon}>
+              <Image src={FileIcon} alt="file" width={0} height={0} />
+            </div>
+            <span className={styles.fileName}>{rawDocument.documentName}</span>
+          </div>
+          <div className={styles.editResultsWrapper}>
+            <div className={styles.icon}>
+              <EditIcon />
+            </div>
+            <button className={styles.editResults}>Edit results</button>
+          </div>
+        </div>
 
-      <ul className={styles.results}>
-        {rawDocument.extractedFile.extractedData.map((item, index) => (
-          <li key={index} className={styles.result}>
-            <span className={styles.title}>{item.Type}</span>
-            <span className={styles.content}>{item.Text}</span>
+        <ul className={styles.results}>
+          {rawDocument.extractedFile.extractedData.map((item, index) => (
+            <li key={index} className={styles.result}>
+              <span className={styles.title}>{item.Type}</span>
+              <span className={styles.content}>{item.Text}</span>
+            </li>
+          ))}
+
+          <li className={styles.result}>
+            <Rating
+              processedDocumentId={rawDocument.extractedFile._id}
+              ratingValue={rawDocument.extractedFile.rating}
+            />
           </li>
-        ))}
-      </ul>
-    </div>
-  </section>
-  )
-
+        </ul>
+      </div>
+    </section>
+  );
 };
 
 const ResultsViewList: React.FC<{ packageData: SinglePackageData }> = ({
@@ -84,8 +87,9 @@ const ResultsViewList: React.FC<{ packageData: SinglePackageData }> = ({
 }) => {
   const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
-  const [editedPackageName, setEditedPackageName] =
-    useState<PackageData["packageName"]>(packageData.packageName);
+  const [editedPackageName, setEditedPackageName] = useState<
+    PackageData["packageName"]
+  >(packageData.packageName);
   const { mutateAsync, isSuccess, isError, error } =
     useUpdatePackageNameMutation();
   const [isLoading, setIsLoading] = useState(false);
@@ -112,7 +116,6 @@ const ResultsViewList: React.FC<{ packageData: SinglePackageData }> = ({
 
   const handleEdit = () => {
     setIsEditing(true);
-    
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -142,30 +145,29 @@ const ResultsViewList: React.FC<{ packageData: SinglePackageData }> = ({
         </button>
 
         <div className={styles.packageNameContainer}>
-     
-        {isEditing ? (
-          <input
-            type="text"
-            value={editedPackageName}
-            onChange={handleInputChange}
-            onBlur={handleBlur}
-            onKeyDown={handleKeyDown}
-            autoFocus
-          />
-        ) : (
-          <>
-            <h1 className={styles.packageName}>{editedPackageName}</h1>
-            <div className={styles.icon} onClick={handleEdit}>
-               <EditIcon />
+          {isEditing ? (
+            <input
+              type="text"
+              value={editedPackageName}
+              onChange={handleInputChange}
+              onBlur={handleBlur}
+              onKeyDown={handleKeyDown}
+              autoFocus
+            />
+          ) : (
+            <>
+              <h1 className={styles.packageName}>{editedPackageName}</h1>
+              <div className={styles.icon} onClick={handleEdit}>
+                <EditIcon />
+              </div>
+            </>
+          )}
+          {isLoading && (
+            <div className={styles.icon}>
+              <ClipLoader color="#3A3A49" size={24} />
             </div>
-          </>
-        )}
-        {isLoading && (
-          <div className={styles.icon}>
-            <ClipLoader color="#3A3A49" size={24} />
-          </div>
-        )}
-      </div>
+          )}
+        </div>
       </div>
 
       <section className={styles.resultsViewsContainer}>
