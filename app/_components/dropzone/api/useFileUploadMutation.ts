@@ -1,7 +1,5 @@
 import {
   useMutation,
-  QueryClient,
-  QueryClientProvider,
 } from "@tanstack/react-query";
 import axiosInstance from "@/app/interceptor/axiosInstance";
 

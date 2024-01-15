@@ -1,16 +1,33 @@
 {
   "pages": {
+    "/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/page.css",
+      "static/chunks/app/page.js"
+    ],
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/page": [
+    "/(routes)/(auth)/login/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/page.css",
-      "static/chunks/app/page.js"
+      "static/css/app/(routes)/(auth)/login/page.css",
+      "static/chunks/app/(routes)/(auth)/login/page.js"
+    ],
+    "/(routes)/(auth)/login/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/(routes)/(auth)/login/layout.css",
+      "static/chunks/app/(routes)/(auth)/login/layout.js"
+    ],
+    "/(routes)/(auth)/signout/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(routes)/(auth)/signout/page.js"
     ],
     "/(routes)/history/page": [
       "static/chunks/webpack.js",

@@ -43,6 +43,14 @@ interface UseLoginProps {
   password: string;
 }
 
+async function signOut(): Promise<void> {
+  localStorage.removeItem("token");
+
+
+}
+
+
+
 
 
 export default function useLogin() {
@@ -69,3 +77,22 @@ export default function useLogin() {
 
 
   }
+
+  const useLogout = () => {
+    const router = useRouter();
+    const options: UseMutationOptions<void, Error, void> = {
+      mutationFn: () => signOut(),
+      onSuccess: () => {
+       
+      },
+      onError: (error: Error) => {
+        console.log(error);
+      },
+    };
+  
+    const signOutMutation = useMutation(options);
+  
+    return { signOutMutation };
+  }
+
+  export {useLogout}

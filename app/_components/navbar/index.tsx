@@ -11,10 +11,11 @@ import useProfile from "@/app/_hooks/useUser";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 
+
 const items = [
   {
     icon: "/images/signout.svg",
-    link: "/",
+    link: "/signout",
     text: "Sign Out",
   },
 ];
@@ -39,6 +40,7 @@ export default function Navbar() {
   const closeDropdown = () => {
     setIsMenuOpen(false);
   };
+
 
   const { data, isLoading, error, isError, status } = useProfile();
 

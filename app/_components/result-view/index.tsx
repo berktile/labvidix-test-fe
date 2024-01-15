@@ -132,6 +132,8 @@ const ResultsViewList: React.FC<{ packageData: SinglePackageData }> = ({
     handleUpdate();
   };
 
+  
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.upperSection}>

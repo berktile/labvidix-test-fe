@@ -28,6 +28,8 @@ export default function RootLayout({
     if (!token && pathname !== "/login" && pathname !== "/signup") {
       router.push("/login");
     }
+
+
   }, [pathname, router]);
 
   return (

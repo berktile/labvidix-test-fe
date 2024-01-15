@@ -29,6 +29,7 @@ export const useUpdatePackageNameMutation = () => {
     mutationFn: (data: any) => updatePackageName(data.id, data.packageName),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["packages"] });
+     
     },
     onError: (error: Error) => {
       console.log(error);
