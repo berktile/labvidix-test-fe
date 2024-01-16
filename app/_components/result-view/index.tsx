@@ -66,17 +66,21 @@ const ResultView: React.FC<{ rawDocument: SinglePackageRawDocument }> = ({
           {rawDocument.extractedFile.extractedData.map((item, index) => (
             <li key={index} className={styles.result}>
               <span className={styles.title}>{item.Type}</span>
+              <div className = {styles.contentWrapper}>
               <span className={styles.content}>{item.Text}</span>
+              </div>
+           
             </li>
           ))}
 
-          <li className={styles.result}>
-            <Rating
+         
+        </ul>
+      </div>
+      <div className={styles.ratingContainer}>
+              <Rating
               processedDocumentId={rawDocument.extractedFile._id}
               ratingValue={rawDocument.extractedFile.rating}
             />
-          </li>
-        </ul>
       </div>
     </section>
   );

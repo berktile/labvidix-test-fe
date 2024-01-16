@@ -49,13 +49,13 @@
   height: 49px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  padding: 10px;
   align-items: center;
-  border-bottom: 4px solid var(--Accent-2, #CFD4F0);
   position: -webkit-sticky;
   position: sticky;
   top: 0;
   background-color: white;
+  grid-gap: 24px;
+  gap: 24px;
 }
 .styles_resultsHeader__yVe6X .styles_headerItem__TZ8Uw {
   width: 100%;
@@ -66,10 +66,12 @@
   color: var(--Gray, #3A3A49);
   text-align: center;
   font-family: "Lato";
+  padding: 10px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
   font-size: clamp(18px, 2vw, 24px);
+  border-bottom: 2px solid var(--stroke, #BBB);
 }
 
 .styles_wrapper__GXiUV {
@@ -160,25 +162,38 @@
   min-height: 984px;
   flex-direction: row;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
   grid-column-gap: 24px;
   column-gap: 24px;
-  border-bottom: 1px var(--Accent-2, #CFD4F0) solid;
-  padding: 24px 25px 41px 25px;
-  background: var(--Accent, #F2F6FC);
+  grid-row-gap: 48px;
+  row-gap: 48px;
+  border-bottom: 1px solid #CFD4F0;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  background: #FDFDFD;
+}
+
+.styles_ratingContainer__SWf_o {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  background: #F7F7F7;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  grid-column: 1/span 2;
 }
 
 .styles_left__lgdk6 {
   width: 100%;
   height: auto;
   display: flex;
-  background-color: rgb(255, 255, 255);
-  padding-left: 22px;
-  padding-right: 21px;
-  padding-top: 22px;
+  background-color: #F7F7F7;
+  padding: 16px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+  border-radius: 6px;
 }
 .styles_left__lgdk6 .styles_docPreview__vGx_v {
   width: 100%;
@@ -214,6 +229,9 @@
   align-items: center;
   justify-content: flex-start;
   gap: 10px;
+  border-radius: 6px;
+  background: #F7F7F7;
+  padding: 4px 16px 4px 16px;
 }
 .styles_right__AZQCs .styles_header__wiHMs .styles_fileNameWrapper__5LNj7 .styles_icon__XzZ9c {
   width: 24px;
@@ -242,6 +260,9 @@
   align-items: center;
   justify-content: flex-start;
   gap: 8px;
+  border-radius: 6px;
+  background: #F7F7F7;
+  padding: 4px 8px 4px 8px;
 }
 .styles_right__AZQCs .styles_header__wiHMs .styles_editResultsWrapper__l10A1 .styles_icon__XzZ9c {
   width: 24px;
@@ -275,15 +296,16 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: 24px;
+  gap: 32px;
 }
 .styles_right__AZQCs .styles_results__OMCPC .styles_result__xxX7k {
   width: 100%;
-  height: 72px;
+  height: auto;
+  min-height: 100px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: 24px;
   font-family: "Lato";
   font-size: 20px;
@@ -292,12 +314,26 @@
   text-align: left;
 }
 .styles_right__AZQCs .styles_results__OMCPC .styles_result__xxX7k .styles_title__6RYAI {
+  color: #7E7E7E;
+  font-size: 20px;
   font-weight: 600;
-  color: var(--Primary-color, #3858FF);
 }
-.styles_right__AZQCs .styles_results__OMCPC .styles_result__xxX7k .styles_content__89cxH {
-  font-weight: 500;
+.styles_right__AZQCs .styles_results__OMCPC .styles_result__xxX7k .styles_contentWrapper__barx8 {
+  width: 100%;
+  max-width: 427px;
+  height: auto;
+  min-height: inherit;
+  display: flex;
+  padding: 10px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border-radius: 6px;
+  background: var(--Accent, #F2F6FC);
+}
+.styles_right__AZQCs .styles_results__OMCPC .styles_result__xxX7k .styles_contentWrapper__barx8 .styles_content__89cxH {
   color: var(--Gray, #3A3A49);
+  font-size: 20px;
+  font-weight: 600;
 }
 /*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[11].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[11].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[11].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[11].oneOf[9].use[5]!./app/_layouts/results.module.scss ***!
@@ -307,7 +343,7 @@
   height: 100%;
   display: grid;
   max-width: 1440px;
-  background: #fff;
+  background: #FDFDFD;
   grid-template-columns: repeat(12, 80px);
   grid-column-gap: 24px;
   column-gap: 24px;
