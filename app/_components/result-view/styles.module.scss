@@ -286,13 +286,8 @@ grid-column: 1 / span 2;
           }
       
           &:hover {
-            .editResults {
-              color: var(--Primary-color, #3858FF);
-            }
-      
-            .icon svg path {
-              fill: var(--Primary-color, #3858FF);
-            }
+           
+            background: #E7E7E7;
           }
         }
       }

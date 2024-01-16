@@ -13,6 +13,7 @@ import { useFileUploadMutation } from "./api/useFileUploadMutation";
 import Loading from "../custom-spinner/Loading";
 import Success from "../../_assets/homepage/success.svg";
 import { motion, AnimatePresence } from "framer-motion";
+import useSinglePackageStore from "@/app/_stores/useSinglePackageStore";
 
 const Extracting: React.FC = () => {
   return (
@@ -40,6 +41,7 @@ const Dropzone: React.FC = () => {
   const [files, setFiles] = useState<File[]>([]);
   const fileUploadMutation = useFileUploadMutation();
   const [isLoading, setIsLoading] = useState(false);
+
 
   const maxFileLimit = process.env.MAX_FILE_LIMIT
     ? parseInt(process.env.MAX_FILE_LIMIT)

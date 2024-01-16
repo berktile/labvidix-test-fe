@@ -32,7 +32,8 @@ export interface SinglePackageRawDocument {
 export interface SinglePackageData {
   _id: string;
   packageName: string;
-  rawDocument: SinglePackageRawDocument[];
+  createdAt: string;
+  rawDocuments: SinglePackageRawDocument[];
 }
 
 export default function Results() {

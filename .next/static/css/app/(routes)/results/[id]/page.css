@@ -283,11 +283,8 @@
   border: none;
   background: none;
 }
-.styles_right__AZQCs .styles_header__wiHMs .styles_editResultsWrapper__l10A1:hover .styles_editResults__UBnGn {
-  color: var(--Primary-color, #3858FF);
-}
-.styles_right__AZQCs .styles_header__wiHMs .styles_editResultsWrapper__l10A1:hover .styles_icon__XzZ9c svg path {
-  fill: var(--Primary-color, #3858FF);
+.styles_right__AZQCs .styles_header__wiHMs .styles_editResultsWrapper__l10A1:hover {
+  background: #E7E7E7;
 }
 .styles_right__AZQCs .styles_results__OMCPC {
   width: 100%;

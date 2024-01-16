@@ -182,7 +182,7 @@ const ResultsViewList: React.FC<{ packageData: SinglePackageData }> = ({
           <span className={styles.headerItem}>Text extraction result</span>
         </div>
 
-        {packageData.rawDocument.map((rawDocument, index) => (
+        {packageData.rawDocuments.map((rawDocument, index) => (
           <ResultView key={index} rawDocument={rawDocument} />
         ))}
       </section>
