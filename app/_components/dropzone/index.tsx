@@ -26,7 +26,7 @@ const Extracting: React.FC = () => {
   );
 };
 
-const SuccessStatus: React.FC = () => {
+export const SuccessStatus: React.FC = () => {
   return (
     <section className={styles.extractingStatusWrapper}>
       <div className={styles.spinner}>
@@ -41,6 +41,8 @@ const Dropzone: React.FC = () => {
   const [files, setFiles] = useState<File[]>([]);
   const fileUploadMutation = useFileUploadMutation();
   const [isLoading, setIsLoading] = useState(false);
+
+  const setIsSuccess = useSinglePackageStore((state) => state.setIsSuccess);
 
 
   const maxFileLimit = process.env.MAX_FILE_LIMIT
@@ -132,7 +134,8 @@ const Dropzone: React.FC = () => {
   }
 
   if (fileUploadMutation.isSuccess) {
-    return <SuccessStatus />;
+     setIsSuccess(true);
+
   }
 
   return (
