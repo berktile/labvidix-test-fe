@@ -1,1 +1,1 @@
-self.__RSC_SERVER_MANIFEST="{\n  \"node\": {},\n  \"edge\": {},\n  \"encryptionKey\": \"lP1tBZ/XJZN011SSpLWXG28fd0SBHp/thensta/ip28=\"\n}"
+self.__RSC_SERVER_MANIFEST="{\"node\":{},\"edge\":{},\"encryptionKey\":\"hqgQCQEyvbCLvrL7c0kuEC+870iBEK2ExZoua3o5FOU=\"}"

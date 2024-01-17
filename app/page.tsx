@@ -1,12 +1,11 @@
 "use client";
 import React, {useEffect, useState} from "react";
-import Navbar from "./_components/navbar";
 import Dropzone from "./_components/dropzone";
 import styles from "./_layouts/Home.module.scss";
 import useSinglePackageStore from "./_stores/useSinglePackageStore";
 import CollapsiblePackage from "./_components/collapsible-package";
 import historyLayout from "./_layouts/history.module.scss";
-import { SuccessStatus } from "./_components/dropzone";
+import StatusMessage, { Status } from "./_components/status";
 
 
 export default function Home() {
@@ -36,7 +35,9 @@ export default function Home() {
 
   if (isSuccess) {
 
-    return <SuccessStatus />;
+    return (
+      <StatusMessage status={Status.Success} />
+    );
   }
 
   return (

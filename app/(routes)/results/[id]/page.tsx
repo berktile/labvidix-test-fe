@@ -4,7 +4,7 @@ import styles from "../../../_layouts/results.module.scss";
 import ResultsViewList from "@/app/_components/result-view";
 import { useGetPackageDetailsQuery } from "../api/useGetPackageDetails";
 import { useParams } from "next/navigation";
-import Loading from "@/app/_components/custom-spinner/Loading";
+import StatusMessage, { Status } from "@/app/_components/status";
 
 
 export interface ExtractedData {
@@ -51,7 +51,7 @@ console.log("id", id)
       height: "100vh"
     
     }}>
-      <Loading />
+      <StatusMessage status={Status.Loading} />
     </div>
   }
       if (isError) {

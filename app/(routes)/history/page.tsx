@@ -3,7 +3,7 @@ import React from "react";
 import CollapsiblePackage from "@/app/_components/collapsible-package";
 import styles from "../../_layouts/history.module.scss";
 import { useGetPackagesWithResultsQuery } from "./api/useGetPackagesWithResultsQuery";
-import Loading from "@/app/_components/custom-spinner/Loading";
+import StatusMessage, { Status } from "@/app/_components/status";
 
 export default function History() {
   const { data, isLoading, isError, error } = useGetPackagesWithResultsQuery();
@@ -18,7 +18,7 @@ export default function History() {
           height: "100vh",
         }}
       >
-        <Loading />
+        <StatusMessage status={Status.Loading} />
       </div>
     );
   }

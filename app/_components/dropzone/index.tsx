@@ -10,32 +10,10 @@ import Image from "next/image";
 import DropLogo from "../../_assets/homepage/converter1.png";
 import Remove from "../../_assets/homepage/remove.svg";
 import { useFileUploadMutation } from "./api/useFileUploadMutation";
-import Loading from "../custom-spinner/Loading";
-import Success from "../../_assets/homepage/success.svg";
 import { motion, AnimatePresence } from "framer-motion";
 import useSinglePackageStore from "@/app/_stores/useSinglePackageStore";
-
-const Extracting: React.FC = () => {
-  return (
-    <section className={styles.extractingStatusWrapper}>
-      <div className={styles.spinner}>
-        <Loading />
-      </div>
-      <p>Files extracting...</p>
-    </section>
-  );
-};
-
-export const SuccessStatus: React.FC = () => {
-  return (
-    <section className={styles.extractingStatusWrapper}>
-      <div className={styles.spinner}>
-        <Image src={Success} alt="Success" width={0} height={0} />
-      </div>
-      <p>Extraction completed successfully!</p>
-    </section>
-  );
-};
+import StatusMessage from "../status";
+import { Status } from "../status";
 
 const Dropzone: React.FC = () => {
   const [files, setFiles] = useState<File[]>([]);
@@ -127,10 +105,15 @@ const Dropzone: React.FC = () => {
   );
 
   if (isLoading) {
-    return <Extracting />;
+    return (
+      <StatusMessage status={Status.Loading}/>
+    );
+         
   }
   if (fileUploadMutation.isError) {
-    return <p>An error occurred while uploading the file</p>;
+    return (
+      <StatusMessage status={Status.Error}/>
+    );
   }
 
   if (fileUploadMutation.isSuccess) {
